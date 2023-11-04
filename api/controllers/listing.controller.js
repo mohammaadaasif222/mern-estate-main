@@ -96,13 +96,15 @@ export const getListings = async (req, res, next) => {
 
     const order = req.query.order || 'desc';
 
-    const listings = await Listing.find(query, { maxTimeMS: 20000 },{
+    const listings = await Listing.find({
       name: { $regex: searchTerm, $options: 'i' },
       offer,
       furnished,
       parking,
       type,
-    })
+    },
+    { maxTimeMS: 20000 }
+    )
       .sort({ [sort]: order })
       .limit(limit)
       .skip(startIndex);

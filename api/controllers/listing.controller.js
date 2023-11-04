@@ -102,8 +102,7 @@ export const getListings = async (req, res, next) => {
       furnished,
       parking,
       type,
-    },
-    { maxTimeMS: 20000 }
+    }
     )
       .sort({ [sort]: order })
       .limit(limit)
